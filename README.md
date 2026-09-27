@@ -22,7 +22,38 @@ It helps you understand what agents are running on your machine, what they are d
 As agent frameworks push toward autonomy, visibility often disappears.
 Riva exists to restore **clarity, safety, and trust**.
 
-[Getting Started](#quick-start) · [How it works](#how-it-works) · [CLI Reference](#cli-reference) · [Web Dashboard](#web-dashboard) · [Security](#security) · [Contributing](#contributing) · [Discord](https://discord.com/channels/1467923903597908244/1467926078356984110)
+[Install](#installation) · [Getting Started](#quick-start) · [How it works](#how-it-works) · [CLI Reference](#cli-reference) · [Web Dashboard](#web-dashboard) · [Security](#security) · [Contributing](#contributing) · [Discord](https://discord.com/channels/1467923903597908244/1467926078356984110)
+
+---
+
+## Installation
+
+### macOS & Linux
+```sh
+curl -fsSL https://rivalabs.ai/install.sh | sh
+```
+
+### Windows (PowerShell)
+```powershell
+irm https://rivalabs.ai/install.ps1 | iex
+```
+
+### Manual install (uv / pipx / pip)
+```sh
+uv tool install riva   # recommended
+# or
+pipx install riva
+# or
+pip install riva
+```
+
+The one-line installers use [uv](https://docs.astral.sh/uv/) and need no Python of your own — if Python 3.11+ isn't installed, uv fetches one. An existing pipx install of riva is upgraded in place.
+
+Prefer plain pip? The installers are optional — `pip install riva` or `pipx install riva` work just as well.
+
+> Manual pip / pipx installs require Python 3.11 or higher. [Download Python](https://python.org)
+
+<sub>Install scripts send an anonymous ping to count installs (OS, install method, and riva version only). Set `RIVA_NO_TELEMETRY=1` to opt out.</sub>
 
 ---
 
@@ -136,7 +167,7 @@ It makes **agent behavior visible**.
 ## Requirements
 
 - **macOS** (Ventura, Sonoma, Sequoia) or **Linux**
-- Windows via **WSL2**
+- Windows via **WSL2** (recommended), or natively via `install.ps1` — the live TUI (`riva watch`) needs WSL2
 - Python 3.11+
 - **System tray** (optional, macOS only): Xcode Command Line Tools (`xcode-select --install`)
 
@@ -144,17 +175,7 @@ It makes **agent behavior visible**.
 
 ## Quick Start
 
-### Install from PyPI
-
-```bash
-pip install riva
-```
-
-### Install via bash script
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/sarkar-ai-taken/riva/main/install.sh | bash
-```
+Install Riva with the one-line installer, uv, or pipx — see [Installation](#installation).
 
 ### Install from source
 

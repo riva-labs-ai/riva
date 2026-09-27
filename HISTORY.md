@@ -1,5 +1,42 @@
 # Release History
 
+## v0.4.0 (2026-09-27)
+
+Pairs with Riva Server 0.1.1+ at https://rivalabs.ai (install telemetry,
+per-model cost on the Usage page, admin overview).
+
+### New
+
+- **One-line installers.** `curl -fsSL https://rivalabs.ai/install.sh | sh`
+  on macOS, Linux and WSL2, and `irm https://rivalabs.ai/install.ps1 | iex`
+  on Windows. Both install riva with [uv](https://docs.astral.sh/uv/) into an
+  isolated environment, fetching a standalone Python 3.11+ if the machine has
+  none; an existing pipx install is upgraded in place instead of duplicated.
+  The shell script is POSIX `sh` (dash-safe) and runs everything from `main`
+  so a truncated download executes nothing. `INSTALL_FROM_SOURCE=1` keeps the
+  editable-install path for contributors; `UV_NO_MODIFY_PATH=1` leaves shell
+  rc files alone. `uninstall.sh` knows about uv and pipx installs.
+- **Anonymous install count.** After a successful install the scripts ping
+  the server once with the OS, install method and riva version — nothing
+  else. `RIVA_NO_TELEMETRY=1` skips it. Feeds the public counter on the
+  product page and the server's admin overview.
+- **Estimated cost in usage rollups.** `riva link sync` and the heartbeat
+  daemon now send `cost_usd` per model alongside token counts, computed from
+  Anthropic's published list prices (`riva.hub.pricing`), so the server's
+  Usage page shows dollars as well as tokens. Unknown or non-Claude models
+  cost 0. Cache and batch discounts are not modelled, so treat it as an
+  upper bound.
+
+### Changed
+
+- **Readable machine names.** `riva link start` strips the macOS `.local`
+  suffix and no longer reports Docker-style hex hostnames (e.g.
+  `ac077525cc8f`); those fall back to the first 8 characters of the stable
+  client ID. Pairs with the dashboard change that dims raw hex IDs from older
+  clients.
+- README leads with the one-line installers; `pip install riva` remains
+  supported.
+
 ## v0.3.20 (2026-09-06)
 
 Pairs with Riva Server 0.1.0 (first hosted release at https://rivalabs.ai).

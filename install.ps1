@@ -142,7 +142,7 @@
     Write-Host '  Alternatively: pip install riva  or  pipx install riva'
     Write-Host ''
     Write-Host '  Tip: for the live TUI (riva watch) and full feature set, use WSL2.'
-    Write-Host '  Docs: https://github.com/sarkar-ai-taken/riva' -ForegroundColor Cyan
+    Write-Host '  Docs: https://github.com/riva-labs-ai/riva' -ForegroundColor Cyan
     Write-Host ''
 
     # Anonymous install ping — counts script installs separately from PyPI

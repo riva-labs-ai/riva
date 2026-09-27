@@ -204,7 +204,7 @@ print_summary() {
     printf '    riva scan            # One-shot agent scan\n'
     printf '    riva watch           # Live TUI dashboard\n\n'
     printf '  Alternatively: pip install riva  or  pipx install riva\n\n'
-    printf '  Docs: %shttps://github.com/sarkar-ai-taken/riva%s\n\n' "$CYAN" "$NC"
+    printf '  Docs: %shttps://github.com/riva-labs-ai/riva%s\n\n' "$CYAN" "$NC"
 }
 
 # Anonymous install ping — counts script installs separately from PyPI

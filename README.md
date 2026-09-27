@@ -180,7 +180,7 @@ Install Riva with the one-line installer, uv, or pipx — see [Installation](#in
 ### Install from source
 
 ```bash
-git clone https://github.com/sarkar-ai-taken/riva.git
+git clone https://github.com/riva-labs-ai/riva.git
 cd riva
 pip install -e ".[test]"
 ```
@@ -943,7 +943,7 @@ New agent detectors can be added without changing the core.
 ### Setup
 
 ```bash
-git clone https://github.com/sarkar-ai-taken/riva.git
+git clone https://github.com/riva-labs-ai/riva.git
 cd riva
 python -m venv .venv
 source .venv/bin/activate
@@ -1024,7 +1024,7 @@ print('Cleaned')
 Or use the uninstall script:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sarkar-ai-taken/riva/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/riva-labs-ai/riva/main/uninstall.sh | bash
 ```
 
 ---
@@ -1069,5 +1069,5 @@ MIT — see [LICENSE](LICENSE) for details.
 
 If you find Riva useful, feel free to share:
 
-- [Share on X](https://x.com/intent/post?text=Seeing%20what%20AI%20agents%20are%20actually%20doing%20on%20your%20machine.%20Local%20AI%20agents%20need%20observability%20too.&url=https%3A%2F%2Fgithub.com%2Fsarkar-ai-taken%2Friva&via=sarkar_ai)
-- [Post to Hacker News](https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgithub.com%2Fsarkar-ai-taken%2Friva&t=Riva%3A%20Your%20AI%20Command%20Center)
+- [Share on X](https://x.com/intent/post?text=Seeing%20what%20AI%20agents%20are%20actually%20doing%20on%20your%20machine.%20Local%20AI%20agents%20need%20observability%20too.&url=https%3A%2F%2Fgithub.com%2Friva-labs-ai%2Friva&via=sarkar_ai)
+- [Post to Hacker News](https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgithub.com%2Friva-labs-ai%2Friva&t=Riva%3A%20Your%20AI%20Command%20Center)

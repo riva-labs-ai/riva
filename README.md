@@ -55,6 +55,8 @@ Prefer plain pip? The installers are optional — `pip install riva` or `pipx in
 
 <sub>Install scripts send an anonymous ping to count installs (OS, install method, and riva version only). Set `RIVA_NO_TELEMETRY=1` to opt out.</sub>
 
+To remove Riva, see [Uninstall](#uninstall).
+
 ---
 
 ## Demo
@@ -997,12 +999,27 @@ twine upload dist/*
 
 ## Uninstall
 
-If you installed Claude Code hooks, remove them first:
+One line, mirroring the installer. It stops the web dashboard, unlinks the machine from every Riva Server (revoking its API keys), removes the Claude Code hooks, and removes the package whether it came from uv, pipx or pip:
+
+```sh
+curl -fsSL https://rivalabs.ai/uninstall.sh | sh
+```
+
+Windows (PowerShell):
+
+```powershell
+irm https://rivalabs.ai/uninstall.ps1 | iex
+```
+
+Local config (`~/.riva` with the link credentials, `~/.config/riva`) is kept unless you answer **y** at the prompt; for unattended runs set `RIVA_PURGE=1` (`$env:RIVA_PURGE = '1'` on Windows) to delete it.
+
+Doing it by hand instead:
 
 ```bash
+riva web stop                   # stop the dashboard / heartbeat daemon
+riva link unlink --all          # revoke this machine's server API keys
 riva hooks uninstall --all      # remove hook entries from ~/.claude/settings.json
-riva web stop                   # stop the web daemon if running
-pip uninstall riva
+uv tool uninstall riva          # or: pipx uninstall riva / pip uninstall riva
 ```
 
 Without `riva hooks uninstall`, the hook entries remain in `~/.claude/settings.json`. They're harmless (the hook script fails silently when Riva isn't installed) but leave orphaned config. Clean them up manually if needed:
@@ -1019,12 +1036,6 @@ for ev in list(h):
 p.write_text(json.dumps(d, indent=2))
 print('Cleaned')
 "
-```
-
-Or use the uninstall script:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/riva-labs-ai/riva/main/uninstall.sh | bash
 ```
 
 ---

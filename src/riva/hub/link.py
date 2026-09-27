@@ -29,6 +29,7 @@ import json
 import logging
 import os
 import platform
+import re
 import socket
 import threading
 import time
@@ -37,6 +38,8 @@ import urllib.request
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING
+
+from riva.hub.pricing import estimate_cost_usd
 
 if TYPE_CHECKING:
     from riva.core.usage_stats import ModelStats
@@ -277,8 +280,37 @@ def is_linked(server_url: str | None = None) -> bool:
 
 
 def _machine_name() -> str:
-    name = socket.gethostname() or platform.node() or "unknown"
-    return name.split(".")[0]
+    """Return a human-readable machine name.
+
+    Preference order:
+    1. socket.gethostname() — e.g. "Saurabhs-MacBook-Pro"
+    2. platform.node()
+    3. First 8 chars of the stable client UUID (last resort)
+
+    Strips the ``.local`` suffix common on macOS and rejects raw hex
+    strings such as Docker container-ID / MAC-derived hostnames
+    (e.g. "ac077525cc8f") so they don't appear verbatim in the dashboard.
+    """
+    for candidate in (socket.gethostname(), platform.node()):
+        if not candidate:
+            continue
+        # Strip .local suffix common on macOS, then take the first label only
+        if candidate.endswith(".local"):
+            candidate = candidate[:-6]
+        name = candidate.split(".")[0]
+        # Reject raw hex strings (Docker container IDs, MAC-derived hostnames)
+        if name and not re.fullmatch(r"[0-9a-f]{8,}", name, re.IGNORECASE):
+            return name
+    # Last resort: first 8 chars of the stable client UUID
+    try:
+        from riva.hub.config import get_client_id
+
+        cid = get_client_id()
+        if cid:
+            return cid[:8]
+    except Exception:
+        pass
+    return "unknown"
 
 
 def _machine_id() -> str:
@@ -730,15 +762,19 @@ def send_usage_rollups(config: LinkConfig | None = None) -> int:
             model_items = [("unknown", None)]
         for model_id, ms in model_items:
             tokens = ms.usage if ms is not None else None
+            input_tokens = tokens.input_tokens if tokens else 0
+            output_tokens = tokens.output_tokens if tokens else 0
+            cost_usd = estimate_cost_usd(model_id, input_tokens, output_tokens)
             rollups.append(
                 {
                     "day": "all-time",
                     "agent": det.agent_name,
                     "model": model_id,
-                    "input_tokens": tokens.input_tokens if tokens else 0,
-                    "output_tokens": tokens.output_tokens if tokens else 0,
+                    "input_tokens": input_tokens,
+                    "output_tokens": output_tokens,
                     "total_tokens": tokens.total_tokens if tokens else usage.total_tokens,
                     "session_count": sessions_left,  # attributed to the first row only
+                    "cost_usd": cost_usd,
                 }
             )
             sessions_left = 0

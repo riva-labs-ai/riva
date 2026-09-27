@@ -45,6 +45,7 @@ class ModelStats:
 
     model_id: str
     usage: TokenUsage = field(default_factory=TokenUsage)
+    cost_usd: float = 0.0
 
 
 @dataclass

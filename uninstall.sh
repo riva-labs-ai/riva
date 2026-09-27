@@ -37,9 +37,15 @@ fi
 
 # Uninstall the Python package
 info "Uninstalling riva package..."
-python3 -m pip uninstall -y riva 2>/dev/null || \
+# install.sh uses uv, or upgrades an existing pipx install; older installs used pip.
+if command -v uv &>/dev/null && uv tool list 2>/dev/null | grep -q '^riva '; then
+    uv tool uninstall riva
+elif command -v pipx &>/dev/null && pipx list --short 2>/dev/null | grep -q '^riva '; then
+    pipx uninstall riva
+else
     python3 -m pip uninstall -y riva 2>/dev/null || \
-    warn "Package not found (may already be uninstalled)"
+        warn "Package not found (may already be uninstalled)"
+fi
 
 ok "Package removed"
 

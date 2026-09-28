@@ -78,11 +78,11 @@
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) {
       if (theme === 'light') {
-        meta.content = '#f5f7fa';
+        meta.content = '#F5F7FA';
       } else if (theme === 'system') {
-        meta.content = window.matchMedia('(prefers-color-scheme: light)').matches ? '#f5f7fa' : '#0a0e14';
+        meta.content = window.matchMedia('(prefers-color-scheme: light)').matches ? '#F5F7FA' : '#0A1628';
       } else {
-        meta.content = '#0a0e14';
+        meta.content = '#0A1628';
       }
     }
 

@@ -1,5 +1,37 @@
 # Release History
 
+## v0.4.1 (2026-09-28)
+
+Visual refresh to RIVA brand board v2, plus the uninstallers that landed
+after v0.4.0. No CLI, config or API changes.
+
+### New
+
+- **One-line uninstallers.** `curl -fsSL https://rivalabs.ai/uninstall.sh | sh`
+  on macOS, Linux and WSL2, and `irm https://rivalabs.ai/uninstall.ps1 | iex`
+  on Windows. They undo what the installers did: stop the web dashboard,
+  `riva link unlink --all` so the server revokes this machine's API keys,
+  `riva hooks uninstall --all`, then remove the package from uv, pipx and
+  pip (whichever have it). Local config is kept unless you answer `y` at the
+  prompt or set `RIVA_PURGE=1` for unattended runs.
+
+### Changed
+
+- **Web dashboard rebrand.** Board palette (Ledger Navy surfaces, Signal
+  Blue actions, Consistency Green for live/healthy) and Space Grotesk
+  headings. The sidebar carries the RIVA wordmark (theme-aware, dark and
+  light); the favicon and app icon are the i-mark.
+- **macOS menu-bar icon.** The i-mark silhouette replaces the shield and
+  magnifying glass. It is a template image, so it follows the menu bar's
+  light/dark appearance.
+- **TUI colours.** Panel borders in Signal Blue, titles in Current Teal.
+- **Smaller package.** `logo.png` is now the 512px i-mark app icon (20 KB)
+  instead of the 1.5 MB mascot.
+- README header uses the wordmark, with a dark-mode variant.
+- Every GitHub link (installers' closing `Docs:` line, PyPI project URLs,
+  README, CONTRIBUTING, issue-template config) points at
+  `riva-labs-ai/riva` after the org rename. The old URLs still redirect.
+
 ## v0.4.0 (2026-09-27)
 
 Pairs with Riva Server 0.1.1+ at https://rivalabs.ai (install telemetry,

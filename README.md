@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="assets/rivA_logo_transparent.png" alt="Riva" width="180"/>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/riva-wordmark-on-dark.png">
+    <img src="assets/brand/riva-wordmark-on-light.png" alt="RIVA" width="206">
+  </picture>
 </p>
 
 ## AI Agent Command Center
@@ -979,7 +982,7 @@ mypy src/riva/ --ignore-missing-imports
 
 ## Release Process
 
-1. Update version in `pyproject.toml`
+1. Update version in `pyproject.toml` and `src/riva/__init__.py`
 2. Update `HISTORY.md` with changes
 3. Run full test suite: `pytest --cov=riva`
 4. Build the package: `python -m build`

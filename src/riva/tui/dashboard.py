@@ -212,7 +212,7 @@ def _build_header(active_tab: Tab) -> Panel:
         else:
             text.append(f" [{key}] {label} ", style="dim")
 
-    return Panel(text, border_style="bright_blue", padding=(0, 1))
+    return Panel(text, border_style="#2E5CFF", padding=(0, 1))
 
 
 def _build_footer(_active_tab: Tab) -> Panel:
@@ -283,7 +283,7 @@ def _build_usage_summary(monitor: ResourceMonitor) -> Panel:
         if parts
         else "[dim]No usage data available. Run [bold]riva stats[/bold] for full breakdown.[/dim]"
     )
-    return Panel(content, title="Usage Summary", title_align="left", border_style="cyan", padding=(0, 1))
+    return Panel(content, title="Usage Summary", title_align="left", border_style="#00C4B3", padding=(0, 1))
 
 
 def _build_forensic_summary() -> Panel:

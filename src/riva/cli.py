@@ -342,8 +342,8 @@ def list_agents() -> None:
     table = Table(
         title="Known AI Agent Types",
         expand=True,
-        title_style="bold cyan",
-        border_style="bright_blue",
+        title_style="bold #00C4B3",
+        border_style="#2E5CFF",
     )
     table.add_column("Agent", style="bold white", min_width=14)
     table.add_column("Binaries", min_width=15)
@@ -414,8 +414,8 @@ def audit_run(as_json: bool = False, include_network: bool = False) -> None:
         table = Table(
             title="Security Audit Report",
             expand=True,
-            title_style="bold cyan",
-            border_style="bright_blue",
+            title_style="bold #00C4B3",
+            border_style="#2E5CFF",
         )
         table.add_column("Check", style="bold white", min_width=20)
         table.add_column("Status", min_width=8)
@@ -467,8 +467,8 @@ def audit_log(hours: float, event_type: str | None, as_json: bool) -> None:
         table = Table(
             title=f"Audit Log ({len(entries)} entries, last {hours}h)",
             expand=True,
-            title_style="bold cyan",
-            border_style="bright_blue",
+            title_style="bold #00C4B3",
+            border_style="#2E5CFF",
         )
         table.add_column("Time", min_width=20)
         table.add_column("Type", min_width=18)
@@ -596,8 +596,8 @@ def network(as_json: bool) -> None:
             table = Table(
                 title=f"{snap.agent_name} (PID {snap.pid}) — {snap.connection_count} connections",
                 expand=True,
-                title_style="bold cyan",
-                border_style="bright_blue",
+                title_style="bold #00C4B3",
+                border_style="#2E5CFF",
             )
             table.add_column("Local", min_width=20)
             table.add_column("Remote", min_width=20)
@@ -824,8 +824,8 @@ def history(hours: float, agent_name: str | None, as_json: bool) -> None:
             table = Table(
                 title=f"Historical Snapshots (last {hours}h)",
                 expand=True,
-                title_style="bold cyan",
-                border_style="bright_blue",
+                title_style="bold #00C4B3",
+                border_style="#2E5CFF",
             )
             table.add_column("Agent", style="bold white", min_width=14)
             table.add_column("Time", min_width=20)
@@ -1022,8 +1022,8 @@ def children(as_json: bool) -> None:
                     f"CPU {tree.tree_cpu_percent}%, Mem {tree.tree_memory_mb:.1f} MB"
                 ),
                 expand=True,
-                title_style="bold cyan",
-                border_style="bright_blue",
+                title_style="bold #00C4B3",
+                border_style="#2E5CFF",
             )
             table.add_column("PID", justify="right", min_width=7)
             table.add_column("PPID", justify="right", min_width=7)
@@ -1073,8 +1073,8 @@ def orphans(hours: float, show_all: bool, as_json: bool) -> None:
             table = Table(
                 title=f"Orphan Processes (last {hours}h)",
                 expand=True,
-                title_style="bold cyan",
-                border_style="bright_blue",
+                title_style="bold #00C4B3",
+                border_style="#2E5CFF",
             )
             table.add_column("Agent", style="bold white", min_width=14)
             table.add_column("Orphan PID", justify="right", min_width=10)
@@ -1147,7 +1147,7 @@ def replay(at_time: str | None, hours: float, as_json: bool) -> None:
 
                 console.print(f"\n[bold cyan]Agent State at {at_time}[/bold cyan]\n")
 
-                table = Table(expand=True, border_style="bright_blue")
+                table = Table(expand=True, border_style="#2E5CFF")
                 table.add_column("Agent", style="bold white", min_width=14)
                 table.add_column("PID", justify="right", min_width=7)
                 table.add_column("CPU %", justify="right", min_width=7)
@@ -1383,8 +1383,8 @@ def workspace_status(as_json: bool) -> None:
         table = Table(
             title=f"Workspace: {config.name}",
             expand=True,
-            title_style="bold cyan",
-            border_style="bright_blue",
+            title_style="bold #00C4B3",
+            border_style="#2E5CFF",
         )
         table.add_column("Setting", style="bold white", min_width=20)
         table.add_column("Value", min_width=40)
@@ -1483,8 +1483,8 @@ def workspace_hooks(test_event: str | None, as_json: bool) -> None:
             table = Table(
                 title="Workspace Hooks",
                 expand=True,
-                title_style="bold cyan",
-                border_style="bright_blue",
+                title_style="bold #00C4B3",
+                border_style="#2E5CFF",
             )
             table.add_column("Event", style="bold white", min_width=20)
             table.add_column("Hook Script", min_width=40)
@@ -1611,8 +1611,8 @@ def config() -> None:
         table = Table(
             title=f"{detector.agent_name} Configuration",
             expand=True,
-            title_style="bold cyan",
-            border_style="bright_blue",
+            title_style="bold #00C4B3",
+            border_style="#2E5CFF",
         )
         table.add_column("Key", style="bold white", min_width=20)
         table.add_column("Value", min_width=40)
@@ -1664,8 +1664,8 @@ def forensic_sessions(project: str | None, limit: int, as_json: bool) -> None:
         table = Table(
             title="Agent Sessions",
             expand=True,
-            title_style="bold cyan",
-            border_style="bright_blue",
+            title_style="bold #00C4B3",
+            border_style="#2E5CFF",
         )
         table.add_column("Slug", style="bold white", min_width=20)
         table.add_column("Session ID", min_width=12)
@@ -2009,8 +2009,8 @@ def otel_status(as_json: bool) -> None:
         table = Table(
             title="OpenTelemetry Status",
             expand=True,
-            title_style="bold cyan",
-            border_style="bright_blue",
+            title_style="bold #00C4B3",
+            border_style="#2E5CFF",
         )
         table.add_column("Setting", style="bold white", min_width=20)
         table.add_column("Value", min_width=40)
@@ -3096,7 +3096,7 @@ def hooks_list() -> None:
     from riva.hooks.install import status as _status
 
     console = Console()
-    table = Table(title="Hook Adapters", expand=True, title_style="bold cyan", border_style="bright_blue")
+    table = Table(title="Hook Adapters", expand=True, title_style="bold #00C4B3", border_style="#2E5CFF")
     table.add_column("Agent", style="bold white", min_width=14)
     table.add_column("CLI Key", min_width=12)
     table.add_column("Status", min_width=14)

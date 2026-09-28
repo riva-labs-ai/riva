@@ -1,24 +1,29 @@
-/* RIVA — Mission Control Theme System */
+/* RIVA — theme system. Palette from the RIVA brand board v2:
+   Signal Blue #2E5CFF (action) · Current Teal #00C4B3 · Consistency Green #35E28B (live/healthy)
+   Ledger Navy #0A1628 · Ink #0B1526 · Paper #F5F7FA. Signal gradient only ever vertical, blue at the bottom. */
 
 /* ─── Dark Theme (default) ─── */
 :root,
 [data-theme="dark"] {
-  --bg: #0a0e14;
-  --bg-surface: #0f1419;
-  --bg-card: #141a22;
-  --bg-card-hover: #1a2230;
-  --bg-elevated: #1c2433;
-  --border: #1e2a3a;
-  --border-subtle: #162030;
-  --border-accent: #243447;
-  --text: #d4dce8;
-  --text-secondary: #8899aa;
-  --text-dim: #5c6e80;
-  --accent: #4da4ff;
-  --accent-dim: rgba(77,164,255,0.12);
-  --accent-glow: rgba(77,164,255,0.06);
-  --green: #40d672;
-  --green-dim: rgba(64,214,114,0.12);
+  --bg: #0A1628;
+  --bg-surface: #0D1B30;
+  --bg-card: #102038;
+  --bg-card-hover: #152843;
+  --bg-elevated: #172B48;
+  --border: #1C2F4D;
+  --border-subtle: #142540;
+  --border-accent: #2A4268;
+  --text: #E2E8F0;
+  --text-secondary: #8CA3BD;
+  --text-dim: #6B7D93;
+  --accent: #2E5CFF;
+  --accent-text: #7C9BFF;
+  --accent-dim: rgba(46,92,255,0.16);
+  --accent-glow: rgba(46,92,255,0.07);
+  --teal: #00C4B3;
+  --signal: linear-gradient(to top, #2E5CFF 0%, #00C4B3 55%, #35E28B 100%);
+  --green: #35E28B;
+  --green-dim: rgba(53,226,139,0.12);
   --yellow: #f0b429;
   --yellow-dim: rgba(240,180,41,0.12);
   --red: #f04e4e;
@@ -33,31 +38,33 @@
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.25);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.3);
+  --font-brand: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-  --sidebar-bg: #080c12;
-  --sidebar-border: #1a2435;
-  --sidebar-hover: rgba(77,164,255,0.08);
-  --sidebar-active: rgba(77,164,255,0.14);
+  --sidebar-bg: #081222;
+  --sidebar-border: #1C2F4D;
+  --sidebar-hover: rgba(46,92,255,0.10);
+  --sidebar-active: rgba(46,92,255,0.18);
 }
 
 /* ─── Light Theme ─── */
 [data-theme="light"] {
-  --bg: #f5f7fa;
-  --bg-surface: #edf0f5;
+  --bg: #F5F7FA;
+  --bg-surface: #EDF0F5;
   --bg-card: #ffffff;
   --bg-card-hover: #f0f3f8;
   --bg-elevated: #ffffff;
   --border: #d8dde6;
   --border-subtle: #e4e8ef;
   --border-accent: #bfc8d4;
-  --text: #1a2233;
+  --text: #0B1526;
   --text-secondary: #5a6a7e;
   --text-dim: #8896a7;
-  --accent: #2b7de9;
-  --accent-dim: rgba(43,125,233,0.10);
-  --accent-glow: rgba(43,125,233,0.05);
-  --green: #1fa855;
-  --green-dim: rgba(31,168,85,0.10);
+  --accent: #2E5CFF;
+  --accent-text: #2E5CFF;
+  --accent-dim: rgba(46,92,255,0.10);
+  --accent-glow: rgba(46,92,255,0.05);
+  --green: #139A5A;
+  --green-dim: rgba(19,154,90,0.10);
   --yellow: #d49a12;
   --yellow-dim: rgba(212,154,18,0.10);
   --red: #dc3545;
@@ -70,8 +77,8 @@
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.10);
   --sidebar-bg: #ffffff;
   --sidebar-border: #e4e8ef;
-  --sidebar-hover: rgba(43,125,233,0.06);
-  --sidebar-active: rgba(43,125,233,0.12);
+  --sidebar-hover: rgba(46,92,255,0.06);
+  --sidebar-active: rgba(46,92,255,0.12);
 }
 
 /* System theme — follow OS preference */
@@ -85,7 +92,7 @@
     --border: #d8dde6;
     --border-subtle: #e4e8ef;
     --border-accent: #bfc8d4;
-    --text: #1a2233;
+    --text: #0B1526;
     --text-secondary: #5a6a7e;
     --text-dim: #8896a7;
     --accent: #2b7de9;
@@ -174,12 +181,19 @@ body {
   white-space: nowrap;
 }
 
-.sidebar-logo-icon {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  object-fit: contain;
+.sidebar-logo-icon {            /* i-mark: shown only when the sidebar is collapsed */
+  display: none;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
 }
+.sidebar-logo-wordmark { display: block; height: 24px; width: auto; }   /* ≈ 70px; RIVA wordmark */
+.sidebar-logo-wordmark--light { display: none; }
+[data-theme="light"] .sidebar-logo-wordmark--dark { display: none; }
+[data-theme="light"] .sidebar-logo-wordmark--light { display: block; }
+.sidebar.collapsed .sidebar-logo-wordmark { display: none !important; }
+.sidebar.collapsed .sidebar-logo-icon { display: block; }
+header h1, section h2 { font-family: var(--font-brand); letter-spacing: -0.01em; }
 
 .sidebar-logo-text {
   font-size: 16px;
@@ -251,9 +265,9 @@ body {
   background: var(--sidebar-hover);
 }
 .nav-item.active {
-  color: var(--accent);
+  color: var(--accent-text);
   background: var(--sidebar-active);
-  border-color: rgba(77,164,255,0.15);
+  border-color: rgba(46,92,255,0.15);
   font-weight: 600;
 }
 
@@ -304,7 +318,7 @@ body {
 .profile-avatar svg {
   width: 16px;
   height: 16px;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .profile-info {
@@ -434,9 +448,9 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--accent);
+  color: var(--accent-text);
   background: var(--accent-dim);
-  border: 1px solid rgba(77,164,255,0.3);
+  border: 1px solid rgba(46,92,255,0.3);
   border-radius: var(--radius-sm);
   padding: 10px 14px;
   text-align: center;
@@ -519,8 +533,8 @@ body {
 .theme-option.active {
   border-color: var(--accent);
   background: var(--accent-dim);
-  color: var(--accent);
-  box-shadow: 0 0 12px rgba(77,164,255,0.08);
+  color: var(--accent-text);
+  box-shadow: 0 0 12px rgba(46,92,255,0.08);
 }
 
 /* ─── Main Content ─── */
@@ -672,14 +686,14 @@ tr:hover td { background: var(--bg-card-hover); }
   line-height: 1.5;
 }
 .badge-running { background: var(--green-dim); color: var(--green); }
-.badge-installed { background: var(--accent-dim); color: var(--accent); }
+.badge-installed { background: var(--accent-dim); color: var(--accent-text); }
 .badge-not_found { background: rgba(92,110,128,0.15); color: var(--text-dim); }
 
 /* Severity badges */
 .severity-critical { background: var(--red-dim); color: var(--red); font-weight: 700; border: 1px solid rgba(240,78,78,0.2); }
 .severity-high { background: var(--red-dim); color: var(--red); }
 .severity-medium { background: var(--yellow-dim); color: var(--yellow); }
-.severity-low { background: var(--accent-dim); color: var(--accent); }
+.severity-low { background: var(--accent-dim); color: var(--accent-text); }
 .severity-info { background: rgba(92,110,128,0.1); color: var(--text-dim); }
 
 /* Network status */
@@ -831,14 +845,14 @@ svg.sparkline { display: block; }
 .btn:active { transform: scale(0.98); }
 .btn-primary {
   background: var(--accent-dim);
-  border-color: rgba(77,164,255,0.3);
-  color: var(--accent);
+  border-color: rgba(46,92,255,0.3);
+  color: var(--accent-text);
   font-weight: 600;
 }
 .btn-primary:hover {
-  background: rgba(77,164,255,0.18);
+  background: rgba(46,92,255,0.18);
   border-color: var(--accent);
-  box-shadow: 0 0 12px rgba(77,164,255,0.1);
+  box-shadow: 0 0 12px rgba(46,92,255,0.1);
 }
 
 /* ─── Empty State ─── */
@@ -968,7 +982,7 @@ footer {
 }
 .timeline-bucket {
   flex: 1;
-  background: rgba(77,164,255,0.2);
+  background: rgba(46,92,255,0.2);
   border-radius: 2px 2px 0 0;
   min-height: 2px;
   transition: background var(--transition);
@@ -997,11 +1011,11 @@ footer {
   background: var(--accent);
   cursor: pointer;
   border: 2px solid var(--bg);
-  box-shadow: 0 0 6px rgba(77,164,255,0.4);
+  box-shadow: 0 0 6px rgba(46,92,255,0.4);
   transition: box-shadow var(--transition);
 }
 .timeline-slider::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 10px rgba(77,164,255,0.6);
+  box-shadow: 0 0 10px rgba(46,92,255,0.6);
 }
 .timeline-slider::-moz-range-thumb {
   width: 12px;
@@ -1014,7 +1028,7 @@ footer {
 
 /* ─── Launch Type Colors ─── */
 .launch-user_terminal { color: var(--green); }
-.launch-ide { color: var(--accent); }
+.launch-ide { color: var(--accent-text); }
 .launch-script { color: var(--yellow); }
 .launch-system { color: var(--orange); }
 .launch-unknown { color: var(--text-dim); }
@@ -1057,7 +1071,7 @@ footer {
 }
 .forensic-event-label {
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 11.5px;
 }
 .forensic-event-prompt {
@@ -1154,7 +1168,7 @@ footer {
 }
 
 .skill-link {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
   font-weight: 500;
 }
@@ -1253,10 +1267,10 @@ footer {
   background: var(--bg-elevated); border: 1px solid var(--border);
   color: var(--text-secondary); cursor: pointer; transition: all 0.15s;
 }
-.btn-sm:hover { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+.btn-sm:hover { background: var(--accent-dim); color: var(--accent-text); border-color: var(--accent); }
 
 .event-session-link {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
   cursor: pointer;
 }

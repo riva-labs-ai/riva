@@ -74,8 +74,8 @@ class TrayDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        // Tray icon: shield + magnifying glass, embedded as base64 PNG @2x
-        let trayIconB64 = "iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAvklEQVR4nO2XwQ7DIAxD7Wj//8vZZZeiMpY0od40HwE5D6elBfjrvTgZd9xUnzeBTDkMYjKBdA61pROSkEFMBjE91M4uK4JZzbUAsWhNCRADnuwGYsKXP/OWGcRkEJNBTIYvBPKEr3cn5BBsmSueQ76Y86tQbGoLE74cEyr5Wr8UTWrLrcPPCq40AlWm9Gm7uALYeR3iOHDWsuqUQpo9QzugmC3sO0C6/xjTXtFiHlwfrpPdvXf5V7RjhLvk+QSc/BZIKtieXwAAAABJRU5ErkJggg=="
+        // Tray icon: the RIVA i-mark (signal bar + dot), embedded as base64 PNG @2x
+        let trayIconB64 = "iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAABVUlEQVR4nOyYvUoDQRSFj5pCQSzUQhsRIlrYWKlY+wR2VtoIij6GtW9gZ28pYqethYVFLBRBRAv/CougJORcdiGQbHZ2zyRhCfPBB5PMFIe5O5m9KaFglFAwhuHHGr2h37E23oAHI9AYpcf0lM7Hn805uhuPr2kdORmCxjR9oJMd5j/pIv1CTtSSbaaEMaboKgTUQCtdWtOGesruurSmDZ9nqIKoNEnYs1OmP8iJWrIPepQyf6iEMdRjb9zTK7pEJ2iV3tJtegERtWQ9Y+CujmV6iebVYeMyPPAp2T49oWMt3//SA3oGAZ8d2kkIY4zTPYioOzRD3xxrZuk7cqLu0HqGNX29OrL86FUhULhjHwK5CIFchEAuQiAXIZALNdBzhjUVCKi3/Qt9Spl/hPDqYaiBaoi6i7+Euf94TsKnDXql53QBUcNorxv2j8cWxK7VCG2QiwYAAAD///KkVzkAAAAGSURBVAMAPX0xGD07L/UAAAAASUVORK5CYII="
         if let data = Data(base64Encoded: trayIconB64),
            let icon = NSImage(data: data) {
             icon.isTemplate = true

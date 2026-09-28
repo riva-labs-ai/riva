@@ -62,8 +62,8 @@ def build_agent_table(instances: list[AgentInstance]) -> Table:
     table = Table(
         title="AI Agents",
         expand=True,
-        title_style="bold cyan",
-        border_style="bright_blue",
+        title_style="bold #00C4B3",
+        border_style="#2E5CFF",
     )
     table.add_column("Agent", style="bold white", min_width=14)
     table.add_column("Status", min_width=10)
@@ -174,8 +174,8 @@ def build_env_table(env_vars: list[dict[str, str]]) -> Table:
     table = Table(
         title="AI Environment Variables",
         expand=True,
-        title_style="bold cyan",
-        border_style="bright_blue",
+        title_style="bold #00C4B3",
+        border_style="#2E5CFF",
     )
     table.add_column("Variable", style="bold white", min_width=25)
     table.add_column("Value", min_width=30)
@@ -195,8 +195,8 @@ def build_usage_table(instances: list[AgentInstance]) -> Table:
     table = Table(
         title="Usage Statistics",
         expand=True,
-        title_style="bold cyan",
-        border_style="bright_blue",
+        title_style="bold #00C4B3",
+        border_style="#2E5CFF",
     )
     table.add_column("Agent", style="bold white", min_width=14)
     table.add_column("Status", min_width=10)
@@ -309,7 +309,7 @@ def build_usage_card(instance: AgentInstance) -> Panel:
         content,
         title=f"{instance.name} Usage",
         title_align="left",
-        border_style="cyan",
+        border_style="#00C4B3",
         expand=True,
     )
 
@@ -319,8 +319,8 @@ def build_network_table(instances: list[AgentInstance]) -> Table:
     table = Table(
         title="Network Connections",
         expand=True,
-        title_style="bold cyan",
-        border_style="bright_blue",
+        title_style="bold #00C4B3",
+        border_style="#2E5CFF",
     )
     table.add_column("Agent", style="bold white", min_width=14)
     table.add_column("Remote", min_width=20)
@@ -440,7 +440,7 @@ def build_forensic_panel(sessions: list[dict] | None = None) -> Panel:
         content,
         title="Forensic Sessions",
         title_align="left",
-        border_style="cyan",
+        border_style="#00C4B3",
         expand=True,
     )
 

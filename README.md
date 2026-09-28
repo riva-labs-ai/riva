@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="assets/rivA_logo_transparent.png" alt="Riva" width="180"/>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/riva-wordmark-on-dark.png">
+    <img src="assets/brand/riva-wordmark-on-light.png" alt="RIVA" width="206">
+  </picture>
 </p>
 
 ## AI Agent Command Center

@@ -982,7 +982,7 @@ mypy src/riva/ --ignore-missing-imports
 
 ## Release Process
 
-1. Update version in `pyproject.toml`
+1. Update version in `pyproject.toml` and `src/riva/__init__.py`
 2. Update `HISTORY.md` with changes
 3. Run full test suite: `pytest --cov=riva`
 4. Build the package: `python -m build`
